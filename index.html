@@ -104,7 +104,7 @@ function chooseAddr(lat, lng, type) {
     dataLayer.addTo(map);
 }
 
-$.getJSON("https://streets-in-the-smog.firebaseio.com/", function(data) { addDataToMap(data, map); });
+$.getJSON("lgtlonGREATERLONDONv2.json", function(data) { addDataToMap(data, map); });
 
 function addDataToMap(data, map) {
 
@@ -144,12 +144,7 @@ function addDataToMap(data, map) {
 		    
 }
 
- // load GeoJSON from an external file
-  $.getJSON("homes.json",function(data){
-    // add GeoJSON layer to the map once the file is loaded
-    L.geoJson(data).addTo(map);
-  });
-  
+ 
 	var markers = [
             [ -7.5498597, 	49.768834, 	"Newham, East Thames Group Limited <br>7 homes" ],
 [ -0.49293212, 	51.540049, 	"Hillingdon, London & Quadrant Housing <br>41 homes" ],
