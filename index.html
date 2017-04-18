@@ -29,7 +29,7 @@
   <div id="map">
     </div>
 
-<div id="search">
+<div id="search" style="margin-top: -540px; position:absolute; width:150px;">
   <input type="text" name="addr" value="" id="addr" size="17" />
   <button type="button" onclick="addr_search();">Type a road name and click here</button>
   <div id="results"></div>
@@ -47,7 +47,6 @@
  </div>
  
   <script>
-
   // initialize the map
   var map = L.map('map').setView([51.51, -0.09], 13);
   
@@ -57,7 +56,6 @@
   $.getJSON('http://nominatim.openstreetmap.org/search?format=json&limit=5&q=' + inp.value + ", London", function(data) {
   
   var items = [];
-
 $.each(data, function(key, val) {
   items.push(
     "<br><br><a href='#' onclick='chooseAddr(" +
@@ -65,7 +63,6 @@ $.each(data, function(key, val) {
     '</a>'
   );
 });
-
 $('#results').empty();
     if (items.length != 0) {
       $('<p>', { html: "" }).appendTo('#results');
@@ -78,18 +75,15 @@ $('#results').empty();
     }
   });
 }
-
 function chooseAddr(lat, lng, type) {
   var location = new L.LatLng(lat, lng);
   map.panTo(location);
-
   if (type == 'city' || type == 'administrative') {
     map.setZoom(11);
   } else {
     map.setZoom(13);
   }
 }
-
   // load a tile layer
   L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
@@ -97,17 +91,13 @@ function chooseAddr(lat, lng, type) {
 	maxZoom: 19,
       
     }).addTo(map);
-
 	function addDataToMap(data, map) {
 	
     var dataLayer = L.geoJson(data);
     dataLayer.addTo(map);
 }
-
 $.getJSON("lgtlonGREATERLONDONv2.json", function(data) { addDataToMap(data, map); });
-
 function addDataToMap(data, map) {
-
 	function getColor(d) {
 		return d > 60 ? '#8A0808' :
 			   d > 50  ? '#DF0101' :
@@ -115,7 +105,6 @@ function addDataToMap(data, map) {
 			   d > 30  ? '#FFFF00' :
 						  '#58FAF4';
 	}
-
 	function VariableStyle(feature) {
     return {
         fillColor: getColor(feature.properties.RNO22013),
@@ -143,7 +132,6 @@ function addDataToMap(data, map) {
     dataLayer.addTo(map);
 		    
 }
-
  
 	var markers = [
             [ -7.5498597, 	49.768834, 	"Newham, East Thames Group Limited <br>7 homes" ],
@@ -1291,7 +1279,6 @@ function addDataToMap(data, map) {
          
              marker.bindPopup(popupText);
 			 }
-
 			
   
   </script>
